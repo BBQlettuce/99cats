@@ -1,6 +1,7 @@
-<h1>Create New Cat!</h1>
+<h1>Edit <%= @cat.name %></h1>
 
-<form action="<%= cats_url %>" method="post">
+<form action="<%= cat_url(@cat) %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
   <label for="name">Cat's Name</label>
     <input id="name" type="text" name="cat[name]" value="<%= @cat.name %>" >
 
