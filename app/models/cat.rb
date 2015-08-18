@@ -5,6 +5,13 @@ class Cat < ActiveRecord::Base
   validates :sex, presence: true, inclusion: { in: ["M", "F"], message: "invalid gender"}
   validates :birth_date, presence: true
 
+  has_many
+    :cat_rental_requests,
+    class_name: "CatRentalRequest",
+    foreign_key: :cat_id,
+    primary_key: :id,
+    dependent: :destroy
+
   def age
      (Time.now.to_date - birth_date).to_i / 365
   end
