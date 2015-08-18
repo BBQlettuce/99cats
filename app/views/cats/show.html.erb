@@ -17,3 +17,19 @@
     <td>Description</td> <td> <%= @cat.description %> </td>
   </tr>
 </table>
+
+<br>
+<table>
+  <tr>
+    <th>Start Date</th> <th>End Date</th>
+  </tr>
+  <% @cat.ordered_rental_requests.each do |rental| %>
+  <tr>
+    <td><%= rental.start_date %></td> <td><%= rental.end_date %></td>
+    <% if rental.status == 'PENDING' %>
+      <button>Approve</button>
+      <button>Deny</button>
+    <% end %>
+  </tr>
+  <% end %>
+</table>

@@ -5,8 +5,7 @@ class Cat < ActiveRecord::Base
   validates :sex, presence: true, inclusion: { in: ["M", "F"], message: "invalid gender"}
   validates :birth_date, presence: true
 
-  has_many
-    :cat_rental_requests,
+  has_many :cat_rental_requests,
     class_name: "CatRentalRequest",
     foreign_key: :cat_id,
     primary_key: :id,
@@ -16,4 +15,7 @@ class Cat < ActiveRecord::Base
      (Time.now.to_date - birth_date).to_i / 365
   end
 
+  def ordered_rental_requests
+    cat_rental_requests.order('start_date')
+  end
 end
