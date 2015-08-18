@@ -26,9 +26,22 @@
   <% @cat.ordered_rental_requests.each do |rental| %>
   <tr>
     <td><%= rental.start_date %></td> <td><%= rental.end_date %></td>
+
     <% if rental.status == 'PENDING' %>
-      <button>Approve</button>
-      <button>Deny</button>
+    <td>
+      <form action="<%= approve_cat_rental_request_url %>", method="POST">
+        <input type="hidden" name="_method" value="PATCH">
+        <button>Approve</button>
+      </form>
+    </td>
+    <td>
+      <form action="<%= deny_cat_rental_request_url %>", method="POST">
+        <input type="hidden" name="_method" value="PATCH">
+        <button>Deny</button>
+      </form>
+    </td>
+       <!-- <button_to >Deny</button> -->
+
     <% end %>
   </tr>
   <% end %>
