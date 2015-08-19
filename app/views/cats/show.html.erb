@@ -31,12 +31,14 @@
     <td>
       <form action="<%= approve_cat_rental_request_url(rental.id) %>", method="POST">
         <input type="hidden" name="_method" value="PATCH">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
         <button>Approve</button>
       </form>
     </td>
     <td>
       <form action="<%= deny_cat_rental_request_url(rental.id) %>", method="POST">
         <input type="hidden" name="_method" value="PATCH">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
         <button>Deny</button>
       </form>
     </td>
