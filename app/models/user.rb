@@ -16,9 +16,7 @@ class User < ActiveRecord::Base
 
   def reset_session_token!
     token = self.class.generate_session_token
-    self.session_token = token
-    self.save!
-    self.session_token
+    self.update!(session_token: token)
   end
 
   def password=(password)
@@ -38,6 +36,6 @@ class User < ActiveRecord::Base
 
   private
   def ensure_session_token
-    self.session_token ||= self.reset_session_token!
+    self.session_token ||= self.class.generate_session_token
   end
 end
