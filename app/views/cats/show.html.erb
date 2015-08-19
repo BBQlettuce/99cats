@@ -29,18 +29,19 @@
 
     <% if rental.status == 'PENDING' %>
     <td>
-      <form action="<%= approve_cat_rental_request_url %>", method="POST">
+      <form action="<%= approve_cat_rental_request_url(rental.id) %>", method="POST">
         <input type="hidden" name="_method" value="PATCH">
         <button>Approve</button>
       </form>
     </td>
     <td>
-      <form action="<%= deny_cat_rental_request_url %>", method="POST">
+      <form action="<%= deny_cat_rental_request_url(rental.id) %>", method="POST">
         <input type="hidden" name="_method" value="PATCH">
         <button>Deny</button>
       </form>
     </td>
-       <!-- <button_to >Deny</button> -->
+    <% else %>
+    <td><%= rental.status %></td>
 
     <% end %>
   </tr>
