@@ -22,7 +22,7 @@ class CatsController < ApplicationController
   end
 
   def create
-    @cat = Cat.new(cat_params.merge({user_id: current_user.id}))
+    @cat = current_user.cats.create(cat_params)
     if @cat.save
       render :show
     else
