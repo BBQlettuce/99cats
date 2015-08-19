@@ -8,3 +8,11 @@
     </li>
   <% end %>
 </ul>
+
+<br>
+<% if logged_in? %>
+<a href="<%= new_cat_url %>">Register a new cat!~~~ </a>
+<br>
+<a href="<%= new_cat_rental_request_url %>">RENT-A-CAT</a>
+
+<% end %>

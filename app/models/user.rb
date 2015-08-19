@@ -11,6 +11,11 @@ class User < ActiveRecord::Base
     foreign_key: :user_id,
     primary_key: :id
 
+  has_many :requests,
+    class_name: "CatRentalRequest",
+    foreign_key: :requester_id,
+    primary_key: :id
+    
   def self.generate_session_token
     token = SecureRandom::urlsafe_base64
     until User.find_by(session_token: token).nil?

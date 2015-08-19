@@ -10,6 +10,10 @@ class CatRentalRequest < ActiveRecord::Base
     foreign_key: :cat_id,
     primary_key: :id
 
+  belongs_to :requester,
+    class_name: "User",
+    foreign_key: :requester_id,
+    primary_key: :id
 
   def overlapping_requests
     where_str = <<-SQL
