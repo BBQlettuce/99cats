@@ -6,5 +6,5 @@ Rails.application.routes.draw do
       patch 'approve'
     end
   end
-
+  resources :users
 end

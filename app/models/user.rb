@@ -1,4 +1,11 @@
 class User < ActiveRecord::Base
+  attr_reader :password
+
+  validates :user_name, presence: true, uniqueness: true
+  validates :password_digest, presence: true
+  validates :password, length: { minimum: 6, allow_nil: true }
+  after_initialize :reset_session_token!
+
   def reset_session_token!
     token = SecureRandom::urlsafe_base64
     until User.find_by(session_token: token).nil?
