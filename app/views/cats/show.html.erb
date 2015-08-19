@@ -30,7 +30,7 @@
   <tr>
     <td><%= rental.start_date %></td> <td><%= rental.end_date %></td>
 
-    <% if rental.status == 'PENDING' %>
+    <% if rental.status == 'PENDING' && !current_user.nil? && @cat.user_id == current_user.id %>
     <td>
       <form action="<%= approve_cat_rental_request_url(rental.id) %>", method="POST">
         <input type="hidden" name="_method" value="PATCH">
