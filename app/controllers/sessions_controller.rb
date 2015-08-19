@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
     if user.nil?
       render :new
     else
-      user.reset_session_token!
+      user.reset_session_token! unless user.session_token
+      # user.reset_session_token!
       session[:token] = user.session_token
       redirect_to cats_url
     end

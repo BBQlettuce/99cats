@@ -2,7 +2,8 @@ class CatRentalRequestsController < ApplicationController
   before_action :check_if_your_cat, only: [:deny, :approve]
 
   def check_if_your_cat
-    cat = Cat.find(rental_params[:cat_id])
+    rental = CatRentalRequest.find(params[:id])
+    cat = rental.cat
     redirect_to cats_url if cat.user_id != current_user.id
   end
 
