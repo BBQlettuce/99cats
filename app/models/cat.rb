@@ -11,6 +11,11 @@ class Cat < ActiveRecord::Base
     primary_key: :id,
     dependent: :destroy
 
+  belongs_to :owner,
+    class_name: "User",
+    foreign_key: :user_id,
+    primary_key: :id
+
   def age
      (Time.now.to_date - birth_date).to_i / 365
   end
